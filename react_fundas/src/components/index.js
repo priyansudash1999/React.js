@@ -5,5 +5,7 @@ import WelcomeMessage from "./WelcomeMessage.jsx";
 import JsxRules from "./JsxRules.jsx";
 import Greeting from "./Greeting.jsx";
 import ProductInfo from "./ProductInfo.jsx";
+import UserList from "./UserList.jsx";
+import ProductList from "./ProductList.jsx";
 
-export {Header, MainContent, Footer, WelcomeMessage, JsxRules, Greeting, ProductInfo}
+export {Header, MainContent, Footer, WelcomeMessage, JsxRules, Greeting, ProductInfo, UserList, ProductList}
