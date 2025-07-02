@@ -1,11 +1,11 @@
 import React from 'react'
-import { Header, MainContent, Footer, WelcomeMessage } from './components/index.js'
+import { Header, MainContent, Footer, WelcomeMessage, JsxRules } from './components/index.js'
 
 
 const App = () => {
   return (
     <div>
-      <WelcomeMessage />
+      <JsxRules />
     </div>
   )
 }
