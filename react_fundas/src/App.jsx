@@ -1,12 +1,12 @@
 import React from 'react'
-import { Header, MainContent, Footer, WelcomeMessage, JsxRules, Greeting, ProductInfo, UserList, ProductList } from './components/index.js'
+import { Header, MainContent, Footer, WelcomeMessage, JsxRules, Greeting, ProductInfo, UserList, ProductList, Person, Product } from './components/index.js'
 
 
 const App = () => {
   return (
     <div>
-      <UserList />
-      <ProductList />
+      <Person name={"Priyansu"} age={27}/>
+      <Product name={"Laptop"} price={300000}/>
     </div>
   )
 }
