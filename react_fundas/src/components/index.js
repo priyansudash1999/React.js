@@ -9,5 +9,8 @@ import UserList from "./UserList.jsx";
 import ProductList from "./ProductList.jsx";
 import Person from "./Person.jsx";
 import Product from "./Product.jsx";
+import Weather from "./Weather.jsx";
+import UserStatus from "./UserStatus.jsx";
+import Greetingg from "./Greetingg.jsx"
 
-export {Header, MainContent, Footer, WelcomeMessage, JsxRules, Greeting, ProductInfo, UserList, ProductList,  Person, Product}
+export {Header, MainContent, Footer, WelcomeMessage, JsxRules, Greeting, ProductInfo, UserList, ProductList,  Person, Product, Weather, UserStatus, Greetingg}
