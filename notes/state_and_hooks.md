@@ -23,7 +23,7 @@
 
 ## Types of hook -
 
-### useState() :-
+### 1. useState() :-
 
 - useState hook allows us to track state in a functional components.
 - State generally refers to data ir properties that need to be tracking in an application.
@@ -106,7 +106,7 @@ const ComponentOne = ({count, onClickHandler} => {
 export default ComponentOne
 ```
 
-### usePortal hook :-
+### 2. usePortal hook :-
 
 #### portal :-
 
@@ -154,7 +154,7 @@ export default ComponentOne
 
 - Notifications
 
-### useEffect :-
+### 3. useEffect :-
 
 - It allows us to perform side effects in out component.
 - Example :- fetching data, directly updating DOM.
@@ -304,3 +304,91 @@ export default ComponentOne
 
   - In this case the value neither change on rendering page nor the title.
   - Because without useState the react can not know that value is changed.
+
+### 4. useContext and createContext :-
+
+#### context API :-
+
+- Context API is a feature that allows us to manage and share state across our components tree without passing props down mamually at every level.
+- It is useful for that scenarios where we need to share data ir functions across many components, especially when the components are deeply nested.
+- Example:-
+
+```javascript
+<!-- App.jsx -->
+// src/App.jsx
+import React from 'react'
+import CompoA from './components/CompoA'
+import Data from './DataContext'
+
+const App = () => {
+  const name = 'priyansu'
+
+  return (
+    <div>
+      <Data.Provider value={name}>
+        <CompoA />
+      </Data.Provider>
+    </div>
+  )
+}
+
+export default App
+```
+
+```javascript
+<!-- Datacontext.jsx -->
+// src/DataContext.js
+import { createContext } from 'react'
+
+const Data = createContext()
+
+export default Data
+```
+
+```javascript
+<!-- CompoA.jsx -->
+import React from 'react'
+import CompoB from './CompoB'
+
+const CompoA = () => {
+return (
+  <div>
+    <CompoB />
+  </div>
+)
+}
+
+export default CompoA
+```
+
+```javascript
+import React from "react";
+import CompoC from "./CompoC";
+
+const CompoB = () => {
+  return (
+    <div>
+      <CompoC />
+    </div>
+  );
+};
+
+export default CompoB;
+```
+
+```javascript
+import React, { useContext } from "react";
+import Data from "../DataContext";
+
+const CompoC = () => {
+  const name = useContext(Data);
+  return <div>My Name: - {name}</div>;
+};
+
+export default CompoC;
+```
+
+> **useContext hook allows us to access the context values provided by a context object directly within a functional component.
+> Context provides a way to pass data through the component tree without having to pass props down manually at every level.**
+
+### 5.

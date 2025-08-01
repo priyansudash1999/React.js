@@ -2,16 +2,17 @@
 import React from 'react'
 import CompoA from './components/CompoA'
 import Data from './DataContext'  
+import { UserProvider } from './UserContext'
+import UserProfile from './components/UserProfile'
+import UpdateUser from './components/UpdateUser'
 
 const App = () => {
-  const name = 'priyansu'
 
   return (
-    <div>
-      <Data.Provider value={name}>
-        <CompoA />
-      </Data.Provider>
-    </div>
+    <UserProvider>
+      <UserProfile />
+      <UpdateUser />
+    </UserProvider>
   )
 }
 
