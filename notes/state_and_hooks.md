@@ -166,6 +166,7 @@ export default ComponentOne
 
 - No, because when we put on useEffect hook inside any condtion, it may skip on some renders and not on others.
 - Example :-
+
   ```javascript
   if (valuee > 0) {
     useEffect(() => {
@@ -175,8 +176,10 @@ export default ComponentOne
       [];
   }
   ```
+
   - The above code is wrong
   - It's correct way :-
+
   ```javascript
   useEffect(() => {
     if (valuee > 0) {
@@ -185,3 +188,119 @@ export default ComponentOne
     }
   }, [valuee]);
   ```
+
+  - Example:-
+
+  ```javascript
+  import React, { useEffect, useState } from "react";
+
+  const App = () => {
+    const [value, setValue] = useState(0);
+
+    const handleClick = () => {
+      setValue(value + 1);
+    };
+
+    useEffect(() => {
+      console.log("Called useEffect hook");
+      document.title = `Increment ${value}`;
+    });
+    return (
+      <div>
+        <h2>{value}</h2>
+        <button onClick={handleClick}>Click me</button>
+      </div>
+    );
+  };
+
+  export default App;
+  ```
+
+  - In this case we can see the value increase and the title of the project the value changes according to increment value but first page rendering value changes then after some fraction of second the title value changes.
+    > **WHY ?** :-
+  - Because the useEffect runs after the DOM updation
+
+  ```javascript
+  import React, { useEffect, useState } from "react";
+
+  const App = () => {
+    const [value, setValue] = useState(0);
+
+    const handleClick = () => {
+      setValue(value + 1);
+    };
+
+    useEffect(() => {
+      console.log("Called useEffect hook");
+      document.title = `Increment ${value}`;
+    }, []);
+    return (
+      <div>
+        <h2>{value}</h2>
+        <button onClick={handleClick}>Click me</button>
+      </div>
+    );
+  };
+
+  export default App;
+  ```
+
+  - In this case first time the useEffect run then it stops due the empty array
+
+  ```javascript
+  import React, { useEffect, useState } from "react";
+
+  const App = () => {
+    const [value, setValue] = useState(0);
+
+    const handleClick = () => {
+      setValue(value + 1);
+    };
+
+    useEffect(() => {
+      console.log("Called useEffect hook");
+      document.title = `Increment ${value}`;
+    });
+    return (
+      <div>
+        <h2>{value}</h2>
+        <button onClick={handleClick}>Click me</button>
+      </div>
+    );
+  };
+
+  export default App;
+  ```
+
+  - In this case both the rendering value and the title value changes when the value changed only.
+
+  > When we pass value in dep array then the useEffect runs for first time and then when value changes then but if we do not pass any dep array whatever changes then the useEffect runs means on every single render.
+
+  ```javascript
+  import React, { useEffect, useState } from "react";
+
+  const App = () => {
+    let [value, setValue] = useState(0);
+
+    const handleClick = () => {
+      value += 1;
+    };
+
+    useEffect(() => {
+      console.log("Called useEffect hook");
+      document.title = `Increment ${value}`;
+      console.log(value);
+    }, [value]);
+    return (
+      <div>
+        <h2>{value}</h2>
+        <button onClick={handleClick}>Click me</button>
+      </div>
+    );
+  };
+
+  export default App;
+  ```
+
+  - In this case the value neither change on rendering page nor the title.
+  - Because without useState the react can not know that value is changed.
