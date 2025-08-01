@@ -100,3 +100,76 @@
       return isValid && <IsValid />;
     };
     ```
+
+  ## Props drilling :-
+
+  - Passing props from parent to children known as props drilling.
+    ![img](./assets/props.png)
+  - If I have a data in App.jsx then how can I use in Date.jsx
+  - Passing from App => Card => User => Date
+  - For a large dataset how can we pass like this
+
+  - Example:-
+
+  ```javascript
+  <!-- App.jsx -->
+  import React from 'react'
+  import CompoA from './components/CompoA'
+
+  const App = () => {
+    const myName = 'Priyansu'
+    return (
+      <div>
+        <CompoA name={myName}/>
+      </div>
+    )
+  }
+
+  export default App
+  ```
+
+  ```javascript
+  <!-- CompoA.jsx -->
+  import React from 'react'
+  import CompoB from './CompoB'
+
+  const CompoA = ({name}) => {
+    return (
+      <div>
+        <CompoB name= {name}/>
+      </div>
+    )
+  }
+
+  export default CompoA
+  ```
+
+  ```javascript
+  <!-- CompoB.jsx -->
+  import React from 'react'
+  import CompoC from './CompoC'
+
+  const CompoB = ({name}) => {
+    return (
+      <div>
+        <CompoC name={name}/>
+      </div>
+    )
+  }
+
+  export default CompoB
+  ```
+
+  ```javascript
+  import React from "react";
+
+  const CompoC = ({ name }) => {
+    return <div>My Name: {name}</div>;
+  };
+
+  export default CompoC;
+  ```
+
+  - Here we pass data from App to CompoC
+
+  > When there will be deeply element, it will be nightmare for a developer when using props drilling. so we have a hook called useContext.

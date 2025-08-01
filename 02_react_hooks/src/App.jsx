@@ -1,21 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import CompoA from './components/CompoA'
 
 const App = () => {
-
-  const [value, setValue] = useState(0)
-
-  const handleClick = () => {
-    setValue(value+1)
-  }
-
-  useEffect(() => {
-    console.log("Called useEffect hook");
-    document.title = `Increment ${value}`
-  }, [value])
+  const myName = 'Priyansu'
   return (
     <div>
-      <h2>{value}</h2>
-      <button onClick={handleClick}>Click me</button>
+      <CompoA name={myName}/>
     </div>
   )
 }
