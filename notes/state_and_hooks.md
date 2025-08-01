@@ -541,3 +541,87 @@ export default CompoC;
   ```
 
 ### 6. useRef :-
+
+- useRef hook provides a way to access and interact with DOM elements or yo persist values across redners without causing a re-render.
+
+- Syntax:- `const myRef = useRef(initialValue);`
+- Example:-
+
+  ```javascript
+  <!-- Timer.jsx -->
+  import React, { useEffect, useState, useRef } from 'react'
+
+  const Timer = () => {
+
+    const [count, setCount] = useState(0)
+    const intervalRef = useRef(null)
+
+    useEffect(() => {
+      intervalRef.current = setInterval(() => {
+        setCount(prev => prev+1)
+      }, 1000)
+
+      return () => {
+        clearInterval(intervalRef.current)
+      }
+    }, [])
+
+    return (
+      <div>
+        <h1>Timer: {count} secs</h1>
+        <button onClick={() => clearInterval(intervalRef.current)}>Stop</button>
+      </div>
+    )
+  }
+
+  export default Timer
+  ```
+
+  ```javascript
+  import Timer from "./components/Timer.jsx";
+  const App = () => {
+    return (
+      <div>
+        <Timer />
+      </div>
+    );
+  };
+
+  export default App;
+  ```
+
+  - **Real-Life Analogy**
+
+    - Think of useRef like a sticky note on your monitor:
+
+    - It stores a value quietly in the background.
+
+    - You can read or write to it, but it won’t call attention to itself (no re-render).
+
+### Custom Hooks:-
+
+- Custom hooks are js function that start with the prefix use(e.g useFetch, useForm) and can call other hooks within them.
+- They allow us to extract and reuse logic that involves state or side effects, making your components more readable and maintainable.
+
+- **Analogy: Custom Hooks = Kitchen Appliances**
+
+  - Imagine your React component is like a kitchen where you cook (render UI).
+  - You often do repetitive tasks like:
+
+    - Boiling water
+
+    - Chopping vegetables
+
+    - Making tea
+
+    - Toasting bread
+
+  - Doing this manually every time is repetitive, so you buy kitchen appliances:
+
+    - Electric kettle → boils water
+
+    - Chopper → cuts vegetables
+
+    - Toaster → makes toast
+
+> Now instead of writing the whole logic again and again, you just reuse these appliances.
