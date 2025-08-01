@@ -392,3 +392,150 @@ export default CompoC;
 > Context provides a way to pass data through the component tree without having to pass props down manually at every level.**
 
 ### 5. useReducer :-
+
+- **useReducer** us a hook that is similar to useState but it is designed for more complex state objects or state tranition that involves multiple sub-values.
+- It allows us to manage state in a function, immutable way.
+- Syntax:- `const [state, dispatch] = useReducer(reducer, initialState)`
+
+  - **state** is the current state value which we can use in our component.
+  - **dispatch** is a function we call to send actions to the reducer, which then updates the state.
+  - **reducer** is a function that describes how the state should change based on actions.It takes the current state and an action as inputs, and returns a new state.
+  - **initialState** is starting valuw for the state when the component first time renders
+
+- Example:-
+
+  ```javascript
+  <!-- CounterReducer.jsx -->
+
+  const initialState = {count: 0}
+
+  function counterReducer(state, action){
+    switch (action.type) {
+      case "increment":
+        return {...state, count: state.count + 1}
+      case "decrement":
+        return {...state, count: state.count - 1}
+      case "incrementByAmount":
+        return {count: state.count + action.payload}
+      case "decrementByAmount":
+        return {count: state.count - action.payload}
+      case "reset":
+        return {...state, count: 0}
+      default:
+        return state
+    }
+  }
+
+  export {initialState, counterReducer}
+  ```
+
+  ```javascript
+  <!-- Counter.jsx -->
+
+  import React, { useReducer, useState } from 'react'
+  import {counterReducer, initialState} from "../CounterReducer.jsx"
+
+  const Counter = () => {
+    const [state, dispatch] = useReducer(counterReducer, initialState)
+    const [input, setInput] = useState(0)
+
+    const handleIncrement = () => {
+      dispatch({type: "increment"})
+    }
+    const handleDecrement = () => {
+      dispatch({type: "decrement"})
+    }
+    const handleIncrementByAmount = () => {
+      dispatch({type: "incrementByAmount" , payload: +input})
+      setInput(0)
+    }
+    const handleDecrementByAmount = () => {
+      dispatch({type: "decrementByAmount", payload: +input})
+      setInput(0)
+    }
+    return (
+      <div>
+        <h2>Count: {state.count}</h2>
+        <button onClick={handleIncrement}>Increment</button>
+        <button onClick={handleDecrement}>decrement</button>
+
+        <div>
+          <input type='number' value={input} onChange={e => setInput(e.target.value)}/>
+
+          <button onClick={handleIncrementByAmount}>add</button>
+          <button onClick={handleDecrementByAmount}>substract</button>
+        </div>
+      </div>
+    )
+  }
+
+  export default Counter
+  ```
+
+  ```javascript
+  <!-- App.jsx -->
+
+  import React from 'react'
+  import Counter from './components/Counter.jsx'
+
+  const App = () => {
+     return (
+       <Counter />
+    )
+  }
+
+  export default App
+  ```
+
+#### **Question :- When we should use useState and when we should use useReducer ?**
+
+- Use useState when:
+
+  - The state is simple (boolean, string, number).
+
+  - The update logic is minimal.
+
+  - You’re managing independent pieces of state.
+
+  ```javascript
+  const [count, setCount] = useState(0);
+
+  const increment = () => setCount(count + 1);
+  ```
+
+- Use useReducer when:
+
+  - State has multiple sub-values (like objects).
+
+  - Updates depend on the previous state.
+
+  - You want predictable state management (like Redux-style).
+
+  - You want to cleanly separate state logic from UI.
+
+  ```javascript
+  const initialState = { count: 0 };
+
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case "INCREMENT":
+        return { count: state.count + 1 };
+      case "DECREMENT":
+        return { count: state.count - 1 };
+      default:
+        return state;
+    }
+  };
+
+  const Counter = () => {
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    return (
+      <>
+        <h1>{state.count}</h1>
+        <button onClick={() => dispatch({ type: "INCREMENT" })}>+</button>
+        <button onClick={() => dispatch({ type: "DECREMENT" })}>-</button>
+      </>
+    );
+  };
+  ```
