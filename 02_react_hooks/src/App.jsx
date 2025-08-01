@@ -1,11 +1,16 @@
+// src/App.jsx
 import React from 'react'
 import CompoA from './components/CompoA'
+import Data from './DataContext'  
 
 const App = () => {
-  const myName = 'Priyansu'
+  const name = 'priyansu'
+
   return (
     <div>
-      <CompoA name={myName}/>
+      <Data.Provider value={name}>
+        <CompoA />
+      </Data.Provider>
     </div>
   )
 }
