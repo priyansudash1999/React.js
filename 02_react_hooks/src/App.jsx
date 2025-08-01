@@ -1,6 +1,8 @@
 // src/App.jsx
-import React from 'react'
+// import React, { useRef } from 'react'
 import Counter from './components/Counter.jsx'
+import FocusInput from './components/FocusInput.jsx'
+import Timer from './components/Timer.jsx'
 
 
 // import CompoA from './components/CompoA'
@@ -26,6 +28,13 @@ import Counter from './components/Counter.jsx'
 
 const App = () => {
 
+  // const inputEle = useRef(null)
+  
+  // const focusInput = () => {
+  //   inputEle.current.focus()
+  //   inputEle.current.value = "Hep hep"
+  // }
+
   // return (
   //   <UserProvider>
   //     <UserProfile />
@@ -44,7 +53,15 @@ const App = () => {
     // </div>
 
 
-    <Counter />
+    // <Counter />
+
+
+    // useRef
+    <div>
+      <FocusInput />
+      <Timer />
+    </div>
+
   )
 }
 
