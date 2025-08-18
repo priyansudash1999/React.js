@@ -3,6 +3,7 @@ import Counter from './components/Counter'
 import Todo from './components/Todo'
 import Meals from './components/Meals'
 import Calculator from './components/Calculator'
+import  BgChanger  from './components/BgChanger'
 
 const App = () => {
   return (
@@ -10,7 +11,8 @@ const App = () => {
       {/* <Counter /> */}
       {/* <Todo /> */}
       {/* <Meals /> */}
-      <Calculator />
+      {/* <Calculator /> */}
+      <BgChanger />
     </div>
   )
 }

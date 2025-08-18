@@ -12,7 +12,7 @@ const Calculator = () => {
   }
 
   const calculate = () => {
-    setInput(eval(input))
+    setInput(eval(input)) // never use eval in production level code because it can get some malicious code
   }
 
   const clearLastItem = () => {
