@@ -4,6 +4,7 @@ import Todo from './components/Todo'
 import Meals from './components/Meals'
 import Calculator from './components/Calculator'
 import  BgChanger  from './components/BgChanger'
+import Testimonal from './components/Testimonal'
 
 const App = () => {
   return (
@@ -12,7 +13,8 @@ const App = () => {
       {/* <Todo /> */}
       {/* <Meals /> */}
       {/* <Calculator /> */}
-      <BgChanger />
+      {/* <BgChanger /> */}
+      <Testimonal />
     </div>
   )
 }
